@@ -1,0 +1,255 @@
+/* main */
+
+body {
+    background-color: antiquewhite;
+}
+
+ul {
+    padding-left: 0;
+}
+
+#main {
+    height: 100%;
+    margin: 0 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*--title--*/
+
+#title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+#titleLeft {
+    height: 100px;
+    width: 100px;
+    margin-right: 10px;
+
+    /* display: block; */
+    overflow: hidden;
+}
+
+#logoImage {
+    height: 100%;
+    width: 100%;
+    background-image: url(https://www.moulem.com/images/logoLeft.png);
+    transition: background-position-y 1s;
+}
+
+#logoImage:hover {
+    background-position-y: -750px;
+}
+
+/*--search--*/
+
+#search {
+    display: flex;
+    height: 50px;
+    justify-content: center;
+}
+
+#searchIcon, #searchInput, #searchButton {
+    background-color: white;
+    border: 1px solid #353535;
+}
+
+#searchIcon {
+    flex: 0 0 50px;
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+    border-right-width: 0;
+    
+    position: relative;
+}
+
+#searchIcon > img, #searchButton > img {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    left: 50%; top:50%;
+    transform: translate(-50%, -50%);
+}
+
+#searchBox {
+    flex: 1 1 250px;
+    max-width: 900px;
+    position: relative;
+}
+
+#searchInput {
+    width: 100%;
+    height: 100%;
+    border-width: 1px 0;
+    outline-style: none;
+    font-size: 17px;
+}
+
+#searchSuggestion {
+    display: none;
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    margin: 0;
+    padding-left: 0;
+    box-sizing: border-box;
+    background-color: white;
+    border-width: 0 1px 1px;
+    border-color: gainsboro;
+    border-style: solid;
+    border-radius: 0 0 20px 20px;
+}
+
+#searchSuggestion > li {
+    /* background-color: white; */
+    list-style: none;
+    padding-left: 20px;
+    cursor: pointer;
+    /* border-top: 1px solid red; */
+}
+
+#searchSuggestion > li:hover {
+    background-color: whitesmoke;
+}
+
+#searchButton {
+    flex: 0 0 50px;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+    position: relative;
+
+    background-color: yellow;
+}
+
+#searchButton > img {
+    width: 60%;
+    height: 60%;
+}
+
+/*--quicker--*/
+
+#quicker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#quicker > li {
+    list-style: none;
+}
+
+#typeList {
+    margin-top: 24px;
+}
+
+#typeList > li {
+    color: gainsboro;
+    display: inline;
+    margin: 10px;
+}
+
+#typeList > li:hover, #typeList > li.active {
+    color: black;
+}
+
+#webList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 1000px;
+}
+
+.webItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: calc(100% / 6);
+    margin-bottom: 10px;
+    padding: 10px 0;
+}
+
+.webItem:hover {
+    background: url(https://www.moulem.com/images/hSiteBg.png?version=18.8) no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.webItem > img {
+    width: 20px;
+}
+
+.webItem > * {
+    margin: 5px;
+}
+
+/* footer */
+
+footer {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    margin: 0 auto;
+    bottom: 0;  left: 0;  right:0;
+}
+
+/* popup */
+
+#popupWrapper {
+    position: fixed;
+    left: 0; top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#popupWrapper.active {
+    background-color: rgba(128, 128, 128, 0.6);
+}
+
+#popupPanel {
+    position: absolute;
+    left: 50%;
+    top: 15%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 280px;
+    background-color: rgb(248, 231, 200);
+    opacity: 0;
+    border-radius: 20px;
+
+    transition: all 0.5s;
+}
+
+#popupPanel:hover {
+    top: 30%;
+    opacity: 1;
+}
+
+#closeButton {
+    position: absolute;
+    width: 30px;
+    top: 11px; right: 11px;
+}
+
+#contentWrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.popupContent {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.popupContent.active {
+    display: block;
+}
