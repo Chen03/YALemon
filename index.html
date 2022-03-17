@@ -29,32 +29,65 @@
                 </a>
             </div>
             <div id="quicker">
-                <ul id="typeList">
-                    <li>默认</li>
-                    <li>玄学</li>
-                    <li>数学</li>
-                    <li>QAQ</li>
-                </ul>
+                <div id="typeList">
+                    <div>数学</div>
+                    <div>QAQ</div>
+                </div>
                 <ul id="webList">
                     <li class="webItem">
                         <img src="https://uploads.moulem.com/id0siteimg/h101.png">
                         <span>站酷</span>
+                        <a></a>
                     </li>
                 </ul>
             </div>
         </div>
         <footer id="copyright">
-            <div>设为主页  手机版   关于  自定义</div>
-            <p>©Moulem  粤ICP备17112242号</p>
+            <div><a onclick="setEditmode(true)">自定义</a></div>
+            <div>©Moulem <a href="http://beian.miit.gov.cn/">粤ICP备17112242号</a></div>
         </footer>
+        <div id="finishEdit">
+            <a class="bigButton" onclick="setEditmode(false)">🖋编辑完啦</a>
+        </div>
 
-        <div id="popupWrapper" class="active">
+        <div id="popupWrapper">
             <div id="popupPanel">
-                <img id="closeButton" src="https://www.moulem.com/images/close-btn.png">
+                <img id="closeButton" src="https://www.moulem.com/images/close-btn.png"
+                onclick="popupManagaer.closePopup()">
                 <div id="contentWrapper">
-                    <div id="pQAQ" class="popupContent">
+                    <div id="pQAQ" class="popupContent active">
                         <h2 style="margin-top: 100px;">QAQ</h2>
                         <span>要做不完任务了嘤嘤嘤</span>
+                    </div>
+                    <div id="pChangeWeblink" class="popupContent">
+                        <div class="titleInputWrapper">
+                            <span>标题</span>
+                            <input id="titleInput" type="text" placeholder="这里输入标题哦(´▽｀)ノ♪">
+                        </div>
+                        <div class="titleInputWrapper">
+                            <span>URL</span>
+                            <input id="URLInput" type="text" placeholder="这里输入URL!">
+                        </div>
+                        <a class="bigButton">修改！</a>
+                    </div>
+                    <div id="pChangeListname" class="popupContent">
+                        <div class="titleInputWrapper">
+                            <input id="titleInput" type="text" placeholder="这里输入标题哦(´▽｀)ノ♪">
+                        </div>
+                        <a class="bigButton">修改！</a>
+                    </div>
+                    <div id="pQuestion" class="popupContent">
+                        <h2></h2>
+                        <span></span>
+                        <div class="selectionWrapper">
+                            <a class="bigButton yesButton">好的！</a>
+                            <a class="bigButton noButton">不要...</a>
+                        </div>
+                    </div>
+                    <div id="pInfo" class="popupContent">
+                        <h2></h2>
+                        <span></span>
+                        <a class="bigButton yesButton">知道啦</a>
                     </div>
                 </div>
             </div>
@@ -62,5 +95,6 @@
 
         <script src="./js/index/search.js"></script>
         <script src="./js/index/website.js"></script>
+        <script src="./js/index/popup.js"></script>
     </body>
 </html>
