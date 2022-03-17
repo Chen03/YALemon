@@ -63,6 +63,28 @@ const popupManagaer = {
         pop.children[2].onclick = () => this.closePopup();
         this.showPopup(pop);
     },
+    showLogin: function() {
+        let pop = document.getElementById("pLogin");
+        pop.children[3].onclick = () => {
+            this.closePopup();
+            login(
+                pop.children[0].children[1].value,
+                pop.children[1].children[1].value
+            );
+        }
+        this.showPopup(pop);
+    },
+    showRegister: function() {
+        let pop = document.getElementById("pRegister");
+        pop.children[2].onclick = () => {
+            this.closePopup();
+            register(
+                pop.children[0].children[1].value,
+                pop.children[1].children[1].value
+            );
+        }
+        this.showPopup(pop);
+    }
 };
 
 popupWrapper.ontransitionend = function() {

@@ -25,6 +25,10 @@ ul {
     justify-content: center;
 }
 
+.unshow {
+    display: none;
+}
+
 /*--title--*/
 
 #title {

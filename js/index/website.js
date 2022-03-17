@@ -255,6 +255,7 @@ const defaultWebPage =
 const typeList = document.getElementById("typeList");
 const webList = document.getElementById("webList");
 
+let id, user;
 let nowPages;       //网站列表们的JSON数据
 let nowPage = 0;    //目前选中的网站列表编号
 let editmode = false;
@@ -383,7 +384,9 @@ function loadPages(webPage, index = 0) {
 }
 
 function savePages() {
-    localStorage.setItem('pages', JSON.stringify(nowPages));
+    // localStorage.setItem('pages', JSON.stringify(nowPages));
+    if (id != null)
+    Agent.post('/savePages', {ID: id, page: nowPages});
 }
 
 function setEditmode(value = true) {
@@ -395,15 +398,66 @@ function setEditmode(value = true) {
     }
 }
 
-function init() {
-    let pages = localStorage.getItem('pages');
-    if (pages != null) {
-        loadPages(JSON.parse(pages));
-        console.log(JSON.parse(pages));
+function register(user, pwd) {
+    let res = Agent.post('/register', {user: user, pwd: pwd});
+    id = res.ID;
+    let pages = Agent.post('/getPages', {ID: id});
+    loadPages(pages);
+    console.log("Register successful:" + id);
+    document.getElementById('logoutButton').className = "";
+    document.getElementById('loginButton').className = "unshow";
+}
+
+function login(user, pwd) {
+    let res = Agent.post('/login', {user: user, pwd: pwd});
+    if (!res.stat) {
+        id = res.ID;
+        localStorage.setItem('id', id);
+        let pages = Agent.post('/getPages', {ID: id});
+        loadPages(pages);
+        console.log("Login successful:" + id);
+        document.getElementById('logoutButton').className = "";
+        document.getElementById('loginButton').className = "unshow";
     } else {
-        localStorage.setItem('pages', JSON.stringify(defaultWebPage));
-        loadPages(defaultWebPage);
+        console.log("Login failed");
     }
+}
+
+function logout() {
+    id = null;
+    user = null;
+    localStorage.removeItem('id');
+    localStorage.removeItem('user');
+    document.getElementById('logoutButton').className = "unshow";
+    document.getElementById('loginButton').className = "";
+    loadPages(
+        Agent.post('/getPages', {ID: 'DEFAULT'})
+    );
+}
+
+function init() {
+    // let pages = localStorage.getItem('pages');
+    // if (pages != null) {
+    //     loadPages(JSON.parse(pages));
+    //     console.log(JSON.parse(pages));
+    // } else {
+    //     localStorage.setItem('pages', JSON.stringify(defaultWebPage));
+    //     loadPages(defaultWebPage);
+    // }
+    id = localStorage.getItem('id');
+    user = localStorage.getItem('user');
+    let pages;
+    if (id != null) {
+        pages = Agent.post('/getPages', {ID: id});
+        document.getElementById('loginButton').className = "unshow";
+    }
+    else {
+        pages = Agent.post('/getPages', {ID: 'DEFAULT'});
+        document.getElementById('logoutButton').className = "unshow";
+    }
+    loadPages(pages);
+    console.log(id);
+    console.log(pages);
 }
 
 init();
